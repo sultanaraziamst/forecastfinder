@@ -31,3 +31,15 @@ def get_weather():
 
     if weather_data.get('cod') != 200:
         return render_template('index.html', error=weather_data.get('message'))
+
+    weather = {
+        'city': weather_data['name'],
+        'temperature': weather_data['main']['temp'],
+        'description': weather_data['weather'][0]['description'],
+        'icon': weather_data['weather'][0]['icon']
+    }
+
+    return render_template('index.html', weather=weather)
+       
+    if __name__ == '__main__':
+        app.run(debug=True)
